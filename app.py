@@ -423,7 +423,9 @@ def greeting():
 # ── Run ───────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     port  = int(os.getenv("PORT", 5000))
-    debug = os.getenv("FLASK_DEBUG", "True").lower() == "true"
+    # Default changed to "False" for production safety.
+    # Set FLASK_DEBUG=True in your local .env to enable debug mode while developing.
+    debug = os.getenv("FLASK_DEBUG", "False").lower() == "true"
     print(f"\n🥗 {AGENT_INSTRUCTIONS['agent_name']} is running at http://localhost:{port}")
     print(f"   IBM Watsonx URL : {IBM_URL}")
     print(f"   API Key set     : {'✅' if IBM_API_KEY else '❌  (add IBM_API_KEY to .env)'}")
